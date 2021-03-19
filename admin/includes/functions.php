@@ -10,6 +10,11 @@ function classAutoLoader($class) {
   }
 }
 
+function redirect($location) {
+  header("Location: {$location}");
+  exit;
+}
+
 spl_autoload_register('classAutoLoader');
 
 ?>

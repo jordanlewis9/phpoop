@@ -29,14 +29,22 @@ class User {
 
   public static function instantiation($the_record) {
     $the_object = new self;
-
     foreach($the_record as $the_attribute => $value) {
       if ($the_object->has_the_attribute($the_attribute)) {
         $the_object->$the_attribute = $value;
       }
     }
-
     return $the_object;
+  }
+
+  public static function verify_user($username, $password) {
+    global $database;
+    $username = $database->escape_string($username);
+    $password = $database->escape_string($password);
+
+    $sql = "SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}' LIMIT 1";
+    $the_result_array = self::find_this_query($sql);
+    return !empty($the_result_array) ? array_shift($the_result_array) : false;
   }
 
   private function has_the_attribute($the_attribute) {
