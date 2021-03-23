@@ -12,10 +12,18 @@
   echo $user->id;
   echo "<br>";
 
-  $users = User::find_all_users();
-  foreach($users as $user) {
-    echo $user->username . "<br>";
-  }
+//   $users = User::find_all_users();
+//   foreach($users as $user) {
+//     echo $user->username . "<br>";
+//   }
+  $user->last_name = "Lewis";
+  $user->save();
+// $user = new User();
+// $user->username = "poop";
+// $user->password = "abc";
+// $user->first_name = "Poop";
+// $user->last_name = "Things";
+// $user->save();
 ?>
         <ol class="breadcrumb">
             <li>
