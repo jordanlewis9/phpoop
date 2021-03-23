@@ -5,6 +5,12 @@ if (!$session->is_signed_in()) {
     redirect("login.php");
 }
 
+// $user = new User();
+// $user->username = "connor";
+// $user->password = "abc";
+// $user->first_name = "Connor";
+// $user->last_name = "Lewis";
+// $user->create();
 ?>
 
         <!-- Navigation -->

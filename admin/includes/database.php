@@ -33,7 +33,7 @@ class Database {
     return $escaped_string;
   }
 
-  public function the_insert_id() {
+  public function insert_id() {
     return $this->connection->insert_id;
   }
 
