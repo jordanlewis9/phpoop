@@ -6,24 +6,30 @@
         </h1>
 <?php
 
-  $user = User::find_user_by_id(1);
-  echo $user->username;
-  echo "<br>";
-  echo $user->id;
-  echo "<br>";
-
+//   $photo = Photo::find_by_id(1);
+//   echo $photo->title;
+//   echo "<br>";
+//   echo $photo->id;
+//   echo "<br>";
+//   echo $photo->description;
+    echo DS;
+    echo "<br>";
+    echo SITE_ROOT;
+    echo "<br>";
+    echo INCLUDES_PATH;
 //   $users = User::find_all_users();
 //   foreach($users as $user) {
 //     echo $user->username . "<br>";
 //   }
-  $user->last_name = "Lewis";
-  $user->save();
-// $user = new User();
-// $user->username = "poop";
-// $user->password = "abc";
-// $user->first_name = "Poop";
-// $user->last_name = "Things";
-// $user->save();
+//   $user->last_name = "Lewis";
+//   $user->save();
+// $photo = new Photo();
+// $photo->title = "sunset";
+// $photo->description = "nice sunset over the himalayas";
+// $photo->filename = "sunsethimalayas.jpg";
+// $photo->type = "jpg";
+// $photo->size = 12;
+// $photo->save();
 ?>
         <ol class="breadcrumb">
             <li>

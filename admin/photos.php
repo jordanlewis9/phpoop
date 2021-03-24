@@ -1,4 +1,7 @@
 <?php include("includes/header.php"); ?>
+<?php 
+    $photos = Photo::find_all();
+?>
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -27,14 +30,34 @@
             Photos
             <small>Subheading</small>
         </h1>
-        <ol class="breadcrumb">
-            <li>
-                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-            </li>
-            <li class="active">
-                <i class="fa fa-file"></i> Blank Page
-            </li>
-        </ol>
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Photo</th>
+                        <th>Id</th>
+                        <th>File Name</th>
+                        <th>Title</th>
+                        <th>Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+
+foreach ($photos as $photo) {
+    echo "
+    <tr>
+    <td><img src='{$photo->picture_path()}'></td>
+    <td>{$photo->id}</td>
+    <td>{$photo->filename}</td>
+    <td>{$photo->title}</td>
+    <td>{$photo->size}</td>
+    </tr>";
+}
+?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <!-- /.row -->
