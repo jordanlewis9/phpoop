@@ -1,6 +1,9 @@
 <?php include("includes/header.php"); ?>
 <?php 
     $photos = Photo::find_all();
+    if (isset($_GET['message'])) {
+        $message = $_GET['message'];
+    }
 ?>
 
         <!-- Navigation -->
@@ -29,6 +32,11 @@
         <h1 class="page-header">
             Photos
             <small>Subheading</small>
+<?php
+if (isset($message)) {
+    echo "<h2>{$message}</h2>";
+}
+?>
         </h1>
         <div class="col-md-12">
             <table class="table table-hover">
@@ -47,7 +55,14 @@
 foreach ($photos as $photo) {
     echo "
     <tr>
-    <td><img src='{$photo->picture_path()}'></td>
+    <td>
+        <img src='{$photo->picture_path()}' width=300 height=300>
+        <div class='pictures_link'>
+            <a href='delete_photo.php?photo_id={$photo->id}'>Delete</a>
+            <a href='#'>Edit</a>
+            <a href='#'>View</a>
+        </div>
+    </td>
     <td>{$photo->id}</td>
     <td>{$photo->filename}</td>
     <td>{$photo->title}</td>
