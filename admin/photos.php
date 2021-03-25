@@ -56,10 +56,10 @@ foreach ($photos as $photo) {
     echo "
     <tr>
     <td>
-        <img src='{$photo->picture_path()}' width=300 height=300>
+        <img src='{$photo->picture_path()}' class='admin-photo-thumbnail' alt='{$photo->alt_text}'>
         <div class='pictures_link'>
             <a href='delete_photo.php?photo_id={$photo->id}'>Delete</a>
-            <a href='#'>Edit</a>
+            <a href='edit_photo.php?photo_id={$photo->id}'>Edit</a>
             <a href='#'>View</a>
         </div>
     </td>

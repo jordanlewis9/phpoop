@@ -1,4 +1,10 @@
 <?php include("includes/header.php"); ?>
+<?php 
+    $users = User::find_all();
+    if (isset($_GET['message'])) {
+        $message = $_GET['message'];
+    }
+?>
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -25,16 +31,48 @@
     <div class="col-lg-12">
         <h1 class="page-header">
             Users
-            <small>Subheading</small>
         </h1>
-        <ol class="breadcrumb">
-            <li>
-                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-            </li>
-            <li class="active">
-                <i class="fa fa-file"></i> Blank Page
-            </li>
-        </ol>
+        <a href="add_user.php" class="btn btn-primary">Add User</a>
+<?php
+if (isset($message)) {
+    echo "<h2>{$message}</h2>";
+}
+?>
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Photo</th>
+                        <th>Username</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+
+foreach ($users as $user) {
+    echo "
+    <tr>
+    <td>{$user->id}</td>
+    <td>
+        <img src='{$user->image_path_and_placeholder()}' class='admin-user-thumbnail user_image'>
+    </td>
+    <td>{$user->username}
+    <div class='action_links'>
+            <a href='delete_user.php?user_id={$user->id}'>Delete</a>
+            <a href='edit_user.php?user_id={$user->id}'>Edit</a>
+        </div>
+    </td>
+    <td>{$user->first_name}</td>
+    <td>{$user->last_name}</td>
+    </tr>";
+}
+?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <!-- /.row -->

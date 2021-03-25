@@ -76,16 +76,16 @@ class Db_object {
     $sql = "UPDATE " . static::$db_table . " SET " . implode(",", $properties_pairs);
     $sql .= " WHERE id = " . $database->escape_string($this->id);
 
-    $database->query($sql);
+    $result = $database->query($sql);
 
-    return $database->connection->affected_rows === 1 ? true : false;
+    return $database->connection->affected_rows < 0 ? true : false;
   }
 
   public function delete() {
     global $database;
     $sql = "DELETE FROM " . static::$db_table . " WHERE id = " . $database->escape_string($this->id) . " LIMIT 1";
     $database->query($sql);
-    return $database->connection->affected_rows === 1 ? "works" : "does not work";
+    return $database->connection->affected_rows === 1 ? true : false;
   }
 }
 
