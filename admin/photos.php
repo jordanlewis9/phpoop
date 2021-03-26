@@ -47,12 +47,14 @@ if (isset($message)) {
                         <th>File Name</th>
                         <th>Title</th>
                         <th>Size</th>
+                        <th>Total Comments</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
 
 foreach ($photos as $photo) {
+    $num_comments = count(Comment::find_the_comments($photo->id));
     echo "
     <tr>
     <td>
@@ -60,13 +62,14 @@ foreach ($photos as $photo) {
         <div class='pictures_link'>
             <a href='delete_photo.php?photo_id={$photo->id}'>Delete</a>
             <a href='edit_photo.php?photo_id={$photo->id}'>Edit</a>
-            <a href='#'>View</a>
+            <a href='../photo.php?photo_id={$photo->id}'>View</a>
         </div>
     </td>
     <td>{$photo->id}</td>
     <td>{$photo->filename}</td>
     <td>{$photo->title}</td>
     <td>{$photo->size}</td>
+    <td><a href='photo_comments?photo_id={$photo->id}'>{$num_comments}</a></td>
     </tr>";
 }
 ?>

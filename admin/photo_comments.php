@@ -1,10 +1,14 @@
 <?php include("includes/header.php"); ?>
 <?php
 
-if (isset($_GET['message'])) {
-    $message = $_GET['message'];
+if (!isset($_GET['photo_id'])) {
+    redirect("photos.php");
 }
-$comments = Comment::find_all();
+if (isset($_GET['message'])) {
+  $message = $_GET['message'];
+}
+$photo_id = $_GET['photo_id'];
+$comments = Comment::find_the_comments($photo_id);
 ?>
 
         <!-- Navigation -->
@@ -48,7 +52,6 @@ if (isset($message)) {
                     <tr>
                         <th>Id</th>
                         <th>Author</th>
-                        <th>In response to...</th>
                         <th>Content</th>
                     </tr>
                 </thead>
@@ -61,10 +64,9 @@ foreach ($comments as $comment) {
     <td>{$comment->id}</td>
     <td>{$comment->author}
     </td>
-    <td><a href='../photo.php?photo_id={$comment->photo_id}'>{$comment->photo_id}</td>
     <td>{$comment->body}
     <div class='action_links'>
-    <a href='delete_comment.php?comment_id={$comment->id}&page=comments'>Delete</a>
+    <a href='delete_comment.php?comment_id={$comment->id}&page=photo_comments&photo_id={$photo_id}'>Delete</a>
     <a href='edit_comment.php?comment_id={$comment->id}'>Edit</a>
     </div>
     </td>
