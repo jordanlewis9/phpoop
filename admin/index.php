@@ -4,13 +4,9 @@
 if (!$session->is_signed_in()) {
     redirect("login.php");
 }
-
-// $user = new User();
-// $user->username = "connor";
-// $user->password = "abc";
-// $user->first_name = "Connor";
-// $user->last_name = "Lewis";
-// $user->create();
+$total_photos = Photo::count_all();
+$total_users = User::count_all();
+$total_comments = Comment::count_all();
 ?>
 
         <!-- Navigation -->
