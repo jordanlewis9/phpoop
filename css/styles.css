@@ -1,0 +1,17 @@
+.home_page_photo {
+  width: 200px;
+  height: 150px !important;
+}
+
+.page_input {
+  width: 40px;
+  direction: rtl;
+}
+
+.target_form {
+  display: inline;
+}
+
+.total_pages {
+  display: inline;
+}

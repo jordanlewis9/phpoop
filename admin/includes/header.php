@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 <?php require_once("init.php"); ?>
-<?php if (!$session->is_signed_in()) {
+<?php if (!$session->is_signed_in() && !strstr($_SERVER['SCRIPT_FILENAME'], 'login.php')) {
     redirect("login.php");
 }
 ?>
@@ -29,6 +29,7 @@
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/jquery.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

@@ -43,6 +43,7 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 <?php include("includes/side_nav.php"); ?>
 
+<?php require_once("includes/photo_modal.php"); ?>
         <div id="page-wrapper">
         <div class="container-fluid">
 
@@ -50,10 +51,10 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Add User
+            Edit User
         </h1>
         <div class="col-md-6">
-          <img src="<?php echo $user->image_path_and_placeholder(); ?>" class="img-responsive" alt="User image">
+          <a href="#" data-toggle="modal" data-target="#photo-library"><img src="<?php echo $user->image_path_and_placeholder(); ?>" class="img-responsive" alt="User image"></a>
         </div>
         <form action="" method="POST" enctype="multipart/form-data">
           <div class="col-md-6">

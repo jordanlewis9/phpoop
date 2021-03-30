@@ -10,7 +10,6 @@ class Session {
   function __construct() {
     session_start();
     $this->check_the_login();
-    $this->check_message();
     $this->visitor_count();
   }
 
