@@ -4,6 +4,10 @@
     redirect('users.php');
   }
 
+  if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+  }
+
   $user = User::find_by_id($_GET['user_id']);
 
   if (isset($_POST['update'])) {
@@ -21,7 +25,7 @@
     } else {
       $user->save_user_and_image();
     }
-    redirect("edit_user.php?user_id={$user->id}");
+    redirect("edit_user.php?user_id={$user->id}&message=User edited successfully");
   }
 
 ?>
@@ -53,8 +57,13 @@
         <h1 class="page-header">
             Edit User
         </h1>
-        <div class="col-md-6">
-          <a href="#" data-toggle="modal" data-target="#photo-library"><img src="<?php echo $user->image_path_and_placeholder(); ?>" class="img-responsive" alt="User image"></a>
+<?php 
+if (isset($message)) {
+  echo $message;
+}
+?>
+        <div class="col-md-6 user_image_box">
+          <a href="#" data-id="<?php echo $user->id; ?>" id="user-photo" data-toggle="modal" data-target="#photo-library"><img src="<?php echo $user->image_path_and_placeholder(); ?>" id="user_img" class="img-responsive" alt="User image"></a>
         </div>
         <form action="" method="POST" enctype="multipart/form-data">
           <div class="col-md-6">

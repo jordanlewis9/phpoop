@@ -44,7 +44,8 @@ class User extends Db_object {
   }
 
   public function save_user_and_image() {
-    $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this->user_image;
+    global $database;
+    $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $database->escape_string($this->user_image);
     if ($this->id && file_exists($target_path)) {
       $this->update();
     } elseif ($this->id && !file_exists($target_path)) {
@@ -86,6 +87,14 @@ class User extends Db_object {
     $sql = "SELECT * FROM " . self::$db_table . " WHERE username = '{$username}' AND password = '{$password}' LIMIT 1";
     $the_result_array = self::find_by_query($sql);
     return !empty($the_result_array) ? array_shift($the_result_array) : false;
+  }
+
+  public function ajax_save_user_image($user_image) {
+    global $database;
+    $this->user_image = $database->escape_string(str_replace('%20', ' ', $user_image));
+    $sql = "UPDATE users SET user_image = '{$this->user_image}' WHERE id = {$this->id}";
+    $database->query($sql);
+    return $database->connection->affected_rows === 1 ? true : false;
   }
 }
 

@@ -9,7 +9,8 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/classic/ckeditor.js"></script>
     <script src="js/scripts.js"></script>
     <script>
-    var piechart = document.getElementById('piechart');
+    var piechart = document.getElementById('piechart') || false;
+    console.log(piechart);
     if (piechart) {
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
