@@ -14,9 +14,12 @@ $user = User::find_by_id($_GET['user_id']);
 
 if ($user) {
   if ($user->delete()) {
-    redirect("users.php?message=User successfully deleted");
+    $user->delete_user_photo();
+    $session->message_action("The user has been successfully deleted.");
+    redirect("users.php");
   }
 } else {
+  $session->message_action("There was an error deleting the user.");
   redirect("users.php");
 }
 

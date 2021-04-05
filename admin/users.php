@@ -1,9 +1,6 @@
 <?php include("includes/header.php"); ?>
 <?php 
     $users = User::find_all();
-    if (isset($_GET['message'])) {
-        $message = $_GET['message'];
-    }
 ?>
 
         <!-- Navigation -->
@@ -29,15 +26,13 @@
 <!-- Page Heading -->
 <div class="row">
     <div class="col-lg-12">
+    <p class="bg-success">
+<?php echo $session->message_action(); ?>
+    </p>
         <h1 class="page-header">
             Users
         </h1>
         <a href="add_user.php" class="btn btn-primary">Add User</a>
-<?php
-if (isset($message)) {
-    echo "<h2>{$message}</h2>";
-}
-?>
         <div class="col-md-12">
             <table class="table table-hover">
                 <thead>

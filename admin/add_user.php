@@ -9,6 +9,10 @@
 
     if ($user->set_file($_FILES['user_image'])) {
       $user->save_user_and_image();
+    } else {
+      $error_message = array_shift($user->custom_errors);
+      $session->message_action($error_message);
+      redirect("add_user.php");
     }
 
   }
@@ -38,6 +42,7 @@
 <!-- Page Heading -->
 <div class="row">
     <div class="col-lg-12">
+    <p class="bg-fail"><?php echo $session->message_action(); ?></p>
         <h1 class="page-header">
             Add User
         </h1>

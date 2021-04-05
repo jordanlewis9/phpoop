@@ -31,7 +31,7 @@ class User extends Db_object {
 
   public function set_file($file) {
     if (empty($file) || !$file || !is_array($file)) {
-      $this->custom_errors[] = "There was no file uploaded here";
+      $this->custom_errors[] = "No profile picture uploaded. Please upload a picture.";
       return false;
     } elseif ($file['error'] !== 0) {
       $this->custom_errors[] = $this->upload_errors[$file['error']];
@@ -95,6 +95,11 @@ class User extends Db_object {
     $sql = "UPDATE users SET user_image = '{$this->user_image}' WHERE id = {$this->id}";
     $database->query($sql);
     return $database->connection->affected_rows === 1 ? true : false;
+  }
+
+  public function delete_user_photo() {
+    $target_path = SITE_ROOT . DS . 'admin' . DS . $this->image_path_and_placeholder();
+    return unlink($target_path) ? true : false;
   }
 }
 

@@ -21,11 +21,13 @@
     if (!empty($_FILES['user_image']['name'])) {
       if($user->set_file($_FILES['user_image'])) {
         $user->save_user_and_image();
+        $session->message_action("The user has been successfully updated.");
       }
     } else {
       $user->save_user_and_image();
+      $session->message_action("The user has been successfully updated.");
     }
-    redirect("edit_user.php?user_id={$user->id}&message=User edited successfully");
+    redirect("users.php");
   }
 
 ?>

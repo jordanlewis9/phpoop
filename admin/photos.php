@@ -29,6 +29,7 @@
 <!-- Page Heading -->
 <div class="row">
     <div class="col-lg-12">
+    <p class="bg-success"><?php echo $session->message_action(); ?></p>
         <h1 class="page-header">
             Photos
             <small>Subheading</small>

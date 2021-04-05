@@ -14,9 +14,11 @@ $photo = Photo::find_by_id($_GET['photo_id']);
 
 if ($photo) {
   if ($photo->delete_photo()) {
+    $session->message_action("The photo {$photo->filename} has been deleted.");
     redirect("photos.php?message=Photo successfully deleted");
   }
 } else {
+  $session->message_action("There has been an error deleting photo {$photo->filename}.");
   redirect("photos.php");
 }
 
